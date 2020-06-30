@@ -29,34 +29,34 @@ Our Project aims to analyse a large dataset of images containing various vehicle
 
 ### File Structure
     .
-    ├── docs                    # Documentation files (alternatively `doc`)
+    ├── docs                    # Documentation files
     │   ├── report.pdf          # Project report
-    │   └── results             # Folder containing screenshots, gifs, videos of results
+    │   └── results             # Video feed of the Working Model
     ├── src
-        ├── hell.model          # Load and stress tests
-    │   ├── main.py             # End-to-end, integration tests (alternatively `e2e`)
-    │   └── train_network.py    # Source files
+        ├── hell.model          # CNN Model
+    │   ├── main.py             # Main File
+    │   └── train_network.py    # Training Network
     ├── ...
-    ├── test                    # Test files (alternatively `spec` or `tests`)
-    │   ├── test_network.py     # Load and stress tests
+    ├── test                    # Test files
+    │   ├── test_network.py     # Testing
     ├── ...
     ├── LICENSE
     ├── README.md 
-    ├── Setup.md                # If Installation instructions are lengthy
-    └── todo.md                 # If Future developments and current status gets lengthy
+    ├── Setup.md                # Installation
+    └── todo.md                 # Future Developments
     
 
 <!-- GETTING STARTED -->
 ### Installation
 1. Clone the repo
 ```sh
-git clone https://github.com/your_username_/Project-Name.git
+git clone https://github.com/akshayb80/Multi-Class-Vehicle-Classification.git
 ```
 
 <!-- RESULTS AND DEMO -->
 ## Results and Demo
 A video demonstrating our working model  
-[**result gif or video**](https://result.gif)  
+[**Working Model Video**](https://github.com/akshayb80/Multi-Class-Vehicle-Classification/blob/master/Docs/Multiclass%20Classification%20Test%20Video.wmv)  
 
 
 <!-- FUTURE WORK -->
