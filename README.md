@@ -55,7 +55,7 @@ Refer this [documentation](https://github.com/akshayb80/Multi-Class-Vehicle-Clas
 
 * Anaconda Environment
 
-  You can visit the [Anaconda](https://www.anaconda.com/) for the installation packages.
+  You can visit the [Anaconda Website](https://www.anaconda.com/) for the installation packages.
 
 * Tensorflow-GPU version 2.1.0 (GPU version is recommended for faster performance)
 
