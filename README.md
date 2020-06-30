@@ -22,6 +22,8 @@ A system that can detect and classify vehicles using deep learning.
 
 Our Project aims to analyse a large dataset of images containing various vehicle categories. We have built a Convolutional Neural Network utilizing LeNet Architecture to detect and classify vehicles from mulitple angles. The architecture consists of two sets of convolutional and average pooling layers, followed by a flattening convoutional layer, then two fully-connected layers finally use a softmax classifier.
 
+Refer this [documentation](https://github.com/akshayb80/Multi-Class-Vehicle-Classification/blob/master/Docs/Project%20Report.pdf)
+
 ### Tech Stack
 * [OpenCV](https://opencv.org/)
 * [Jupyter Notebook](https://jupyter.org/)
@@ -47,6 +49,30 @@ Our Project aims to analyse a large dataset of images containing various vehicle
     
 
 <!-- GETTING STARTED -->
+## Getting Started
+
+### Prerequisites
+
+* Anaconda Environment
+
+  You can visit the [Anaconda](https://www.anaconda.com/) for the installation packages.
+
+* Tensorflow-GPU version 2.1.0 (GPU version is recommended for faster performance)
+
+  Tensorflow installation in [Conda Environment](https://docs.anaconda.com/anaconda/user-guide/tasks/tensorflow/)
+
+  Command for One Step installation (If the system has NVIDIA GPU):
+
+```sh
+conda create --name tensor_gpu tensorflow-gpu anaconda
+```
+
+* OpenCV version 4.3.0
+```sh
+conda install -c conda-forge opencv
+```
+
+
 ### Installation
 1. Clone the repo
 ```sh
