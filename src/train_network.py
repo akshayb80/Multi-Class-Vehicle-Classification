@@ -47,13 +47,13 @@ for imagePath in imagePaths:
     # print(image.shape)
     # image = cv2.cvtColor(images, cv2.COLOR_BGR2GRAY)
     image = cv2.resize(image, (28, 28))
-    blob = cv2.dnn.blobFromImage(image, 1, (28, 28), (104, 117, 123))
+    # blob = cv2.dnn.blobFromImage(image, 1, (28, 28), (104, 117, 123))
 
     #
-    # image = img_to_array(image)
-    print(blob.shape)
+    image = img_to_array(image)
+    # print(blob.shape)
     
-    data.append(blob)
+    data.append(image)
     # extract the class label from the image path and update the
     # labels list
     label = imagePath.split(os.path.sep)[-2]
@@ -68,50 +68,52 @@ for imagePath in imagePaths:
     labels.append(label)
     if cv2.waitKey(0):
         break
-    print("{} {}".format(imagePath, label))
+    # print("{} {}".format(imagePath, label))
 
 
 # scale the raw pixel intensities to the range [0, 1]
-# data = np.array(data, dtype="float") / 255.0
-# labels = np.array(labels)
-# # partition the data into training and testing splits using 75% of
-# # the data for training and the remaining 25% for testing
-# (trainX, testX, trainY, testY) = train_test_split(data,
-#                                                   labels, test_size=0.25, random_state=42)
-# # convert the labels from integers to vectors
-# trainY = to_categorical(trainY, num_classes=3)
-# testY = to_categorical(testY, num_classes=3)
-#
-# # construct the image generator for data augmentation
-# aug = ImageDataGenerator(rotation_range=30, width_shift_range=0.1,
-#                          height_shift_range=0.1, shear_range=0.2, zoom_range=0.2,
-#                          horizontal_flip=True, fill_mode="nearest")
-#
-# # initialize the model
-# print("[INFO] compiling model...")
-# model = LeNet.build(width=28, height=28, depth=3, classes=3)
-# opt = Adam(lr=INIT_LR, decay=INIT_LR / EPOCHS)
-# model.compile(loss="categorical_crossentropy", optimizer=opt,
-#               metrics=["accuracy"])
-# # train the network
-# print("[INFO] training network...")
-# H = model.fit(x=aug.flow(trainX, trainY, batch_size=BS),
-#               validation_data=(testX, testY), steps_per_epoch=len(trainX) // BS,
-#               epochs=EPOCHS, verbose=1)
-# # save the model to disk
-# print("[INFO] serializing network...")
-# model.save(args["model"], save_format="h5")
-#
-# # plot the training loss and accuracy
-# plt.style.use("ggplot")
-# plt.figure()
-# N = EPOCHS
-# plt.plot(np.arange(0, N), H.history["loss"], label="train_loss")
-# plt.plot(np.arange(0, N), H.history["val_loss"], label="val_loss")
-# plt.plot(np.arange(0, N), H.history["accuracy"], label="train_acc")
-# plt.plot(np.arange(0, N), H.history["val_accuracy"], label="val_acc")
-# plt.title("Training Loss and Accuracy on Bus/Car")
-# plt.xlabel("Epoch #")
-# plt.ylabel("Loss/Accuracy")
-# plt.legend(loc="lower left")
-# plt.savefig(args["plot"])
+data = np.array(data, dtype="float") / 255.0
+labels = np.array(labels)
+
+# partition the data into training and testing splits using 75% of
+# the data for training and the remaining 25% for testing
+(trainX, testX, trainY, testY) = train_test_split(data,
+                                                  labels, test_size=0.25, random_state=42)
+# convert the labels from integers to vectors
+trainY = to_categorical(trainY, num_classes=3)
+testY = to_categorical(testY, num_classes=3)
+
+# construct the image generator for data augmentation
+aug = ImageDataGenerator(rotation_range=30, width_shift_range=0.1,
+                         height_shift_range=0.1, shear_range=0.2, zoom_range=0.2,
+                         horizontal_flip=True, fill_mode="nearest")
+
+# initialize the model
+print("[INFO] compiling model...")
+model = LeNet.build(width=28, height=28, depth=3, classes=3)
+opt = Adam(lr=INIT_LR, decay=INIT_LR / EPOCHS)
+model.compile(loss="categorical_crossentropy", optimizer=opt,
+              metrics=["accuracy"])
+
+# train the network
+print("[INFO] training network...")
+H = model.fit(x=aug.flow(trainX, trainY, batch_size=BS),
+              validation_data=(testX, testY), steps_per_epoch=len(trainX) // BS,
+              epochs=EPOCHS, verbose=1)
+# save the model to disk
+print("[INFO] serializing network...")
+model.save(args["model"], save_format="h5")
+
+# plot the training loss and accuracy
+plt.style.use("ggplot")
+plt.figure()
+N = EPOCHS
+plt.plot(np.arange(0, N), H.history["loss"], label="train_loss")
+plt.plot(np.arange(0, N), H.history["val_loss"], label="val_loss")
+plt.plot(np.arange(0, N), H.history["accuracy"], label="train_acc")
+plt.plot(np.arange(0, N), H.history["val_accuracy"], label="val_acc")
+plt.title("Training Loss and Accuracy on Bus/Car/Bike")
+plt.xlabel("Epoch #")
+plt.ylabel("Loss/Accuracy")
+plt.legend(loc="lower left")
+plt.savefig(args["plot"])
