@@ -26,8 +26,8 @@ for imagePath in imagePaths:
     image = image.astype("float") / 255.0
     image = img_to_array(image)
     image = np.expand_dims(image, axis=0)
-    print(image)
-    print("First Blob: {}".format(image.shape))
+    # print(image)
+    # print("First Blob: {}".format(image.shape))
 
     print("[INFO] loading network...")
 
